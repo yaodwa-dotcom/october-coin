@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>October Coin Countdown</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: black;
+      color: white;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    #timer {
+      font-size: 5rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #00ffcc;
+      text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to End of October</h1>
+  <div id="timer"></div>
+
+  <script>
+    function updateTimer() {
+      const endDate = new Date("October 31, 2025 23:59:59 EST").getTime();
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance < 0) {
+        document.getElementById("timer").innerHTML = "EXPIRED";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    }
+
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
